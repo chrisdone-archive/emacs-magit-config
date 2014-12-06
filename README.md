@@ -115,7 +115,35 @@ fib 1 = 1
 fib n = fib (n - 1) + fib (n - 2)
 ```
 
-### Type checking
+## Structured editing
+
+There's a fairly complete list of commands for structured editing
+[here](https://github.com/chrisdone/structured-haskell-mode/#features).
+
+The basic gist is that your source is parsed whenever you are idle for
+half a second and then you have a "current node". That node is
+indicated by the background color. You can expand it with `M-a` or `)`
+depending on the direction you want to go. Normal Emacs commands are a
+bit smarter than usually, specifically `C-k`, `C-w`, `C-y`,
+`C-j`.
+
+Don't use `TAB` for indentation, use the structured selection and use
+`C-j` which will make a newline and indent to the right location.
+
+Don't do manual formatting. See next section.
+
+## Pretty printing
+
+To format a Haskell declaration, run `C-c i`. Running it on the third
+`fib` declaration should yield:
+
+``` haskell
+fib n =
+  fib (n - 1) +
+  fib (n - 2)
+```
+
+## Type checking
 
 To type check and load the current module, run `C-c C-l`, or simply
 `F5`. If everything is OK it'll say `OK` in the minibuffer at the
@@ -166,17 +194,6 @@ If you go to the `n` in `n - 2` and run `C-?` it will highlight all
 the occurrences. You can hit `TAB` to go forwards in the results, or
 `S-TAB` to go backwards. Hit `RET` to stop where you are, or `C-g` to
 stop and go back to where you were originally.
-
-## Pretty printing
-
-To format a Haskell declaration, run `C-c i`. Running it on the third
-`fib` declaration should yield:
-
-``` haskell
-fib n =
-  fib (n - 1) +
-  fib (n - 2)
-```
 
 ## Interactive REPL
 
