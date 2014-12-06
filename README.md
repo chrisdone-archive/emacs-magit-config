@@ -79,3 +79,172 @@ Then run Emacs from the terminal as simply:
 
 You need to run it from the terminal to ensure that your `PATH` is
 configured, otherwise it's more difficult to setup.
+
+## Using
+
+You need a Cabal project, `cabal repl` does not work without one. If
+you do not have a `.cabal` file, just make a dummy one.
+
+For convenience I made a sandbox for random Haskell playing:
+
+    $ git clone https://github.com/chrisdone/haskell-sandbox.git
+
+Open up `src/Main.hs`. Run `C-c C-l` to bring up the REPL and start a
+session. It'll prompt with something like:
+
+> Start a new project named “haskell-sandbox” (y or n)
+
+Hit `y`. It will guess the directory of your project based on the
+`.cabal` file, hit RET on that. It'll prompt for the current
+directory, hit RET on that too. In a second you should see a REPL
+window like:
+
+    Your wish is my IO ().
+    If I break, you can:
+      1. Restart:           M-x haskell-process-restart
+      2. Configure logging: C-h v haskell-process-log (useful for debugging)
+      3. General config:    M-x customize-mode
+      4. Hide these tips:   C-h v haskell-process-show-debug-tips
+
+Now you can start hacking. Paste something like this into `Main.hs`:
+
+``` haskell
+fib :: Integer -> Integer
+fib 0 = 1
+fib 1 = 1
+fib n = fib (n - 1) + fib (n - 2)
+```
+
+### Type checking
+
+To type check and load the current module, run `C-c C-l`, or simply
+`F5`. If everything is OK it'll say `OK` in the minibuffer at the
+bottom.
+
+If you create a type error, by e.g. removing the `(n-2)` in the code
+sample above, you'll see the following in the minibuffer:
+
+    src/Main.hs:8:21-23: Couldn't match expected type ‘Integer’ [ with actua .. ]
+
+In the REPL window you'll see the full error:
+
+    src/Main.hs:8:21-23: Couldn't match expected type ‘Integer’ …
+                    with actual type ‘Integer -> Integer’
+        Probable cause: ‘fib’ is applied to too few arguments
+        In the second argument of ‘(+)’, namely ‘fib’
+        In the expression: fib (n - 1) + fib
+    Compilation failed.
+
+You can run <code>C-x `</code> to jump to the error
+line/column. Correct the error and hit `F5` and you should get `OK`
+again.
+
+## Type information
+
+Once you've loaded your module in, you can go to any identifier and
+run `C-c C-t`. E.g. if you go to `n` and run `C-c C-t` you'll see this
+in the minibuffer:
+
+``` haskell
+n :: Integer
+```
+
+If you select the `n - 1` and hit `C-c C-t` you'll see this:
+
+``` haskell
+n - 1 :: Integer
+```
+
+## Go to definition
+
+If you go to the `n` in `n - 2` and run `M-.` it will jump to the `n`
+in `fib n`.
+
+## Highlight uses
+
+If you go to the `n` in `n - 2` and run `C-?` it will highlight all
+the occurrences. You can hit `TAB` to go forwards in the results, or
+`S-TAB` to go backwards. Hit `RET` to stop where you are, or `C-g` to
+stop and go back to where you were originally.
+
+## Pretty printing
+
+To format a Haskell declaration, run `C-c i`. Running it on the third
+`fib` declaration should yield:
+
+``` haskell
+fib n =
+  fib (n - 1) +
+  fib (n - 2)
+```
+
+## Interactive REPL
+
+The REPL is pretty self-explanatory. Write expressions and hit `RET`
+to see the results:
+
+``` haskell
+λ> import Data.List
+λ> sort [5,2,3,5,22]
+
+<interactive>:43:1-17: Warning:
+    Defaulting the following constraint(s) to type ‘Integer’
+      (Show a0) arising from a use of ‘print’ at <interactive>:43:1-17
+      (Ord a0) arising from a use of ‘it’ at <interactive>:43:1-17
+      (Num a0) arising from a use of ‘it’ at <interactive>:43:1-17
+    In a stmt of an interactive GHCi command: print it
+[2,3,5,5,22]
+λ> :t sort [5,2,3,5,22]
+sort [5,2,3,5,22] :: (Ord a, Num a) => [a]
+```
+
+The results are syntax coloured automatically.
+
+If there is ever a problem with the REPL, you can just hit `C-c C-k`
+to clear it, or `M-x haskell-process-restart` to restart the whole
+thing.
+
+## Cabal actions
+
+To build with Cabal run `C-c C-c`. This will run `cabal build` on the
+project and interpret any compile errors/warnings as it does when you
+run `C-c C-l` or `F5`.
+
+In our sandbox project, you should get something like:
+
+    Compiling: Main
+    src/Main.hs:1:1: The IO action ‘main’ is not defined in module ‘Main’
+    Complete: cabal build (1 compiler messages)
+
+So you can just add something like:
+
+    main = print (fib 10)
+
+And save the buffer and then run `C-c C-c` again. You should get
+output like:
+
+    Compiling: Main
+    Linking: dist/build/haskell-sandbox/haskell-sandbox
+    src/Main.hs:12:1: Warning: …
+        Top-level binding with no type signature: main :: IO ()
+    Complete: cabal build (2 compiler messages)
+
+A typical issue. Check the next section for handling this nicely.
+
+You can also run `C-c c` and you will get a prompt of cabal
+commands. From here you can run `cabal bench`, `cabal test`, `cabal
+haddock`, `cabal install`, etc.
+
+## Inserting types
+
+If we've loaded the Main module, then we can correct that missing
+signature by going to the `main` identifier and running `C-u C-c
+C-t`. This is like normal `C-c C-t`, except it will insert the type
+for you. You should now have:
+
+``` haskell
+main :: IO ()
+main = print (fib 10)
+```
+
+And running `F5` again should yield no warnings.
