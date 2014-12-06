@@ -265,3 +265,56 @@ main = print (fib 10)
 ```
 
 And running `F5` again should yield no warnings.
+
+## Information about types
+
+If you put your cursor on `IO` and hit `C-c C-i`, you will get GHCi's
+`:i` information about that in a popup, like this:
+
+``` haskell
+-- Hit `q' to close this window.
+
+newtype IO a
+  = ghc-prim:GHC.Types.IO (ghc-prim:GHC.Prim.State#
+                             ghc-prim:GHC.Prim.RealWorld
+                           -> (# ghc-prim:GHC.Prim.State# ghc-prim:GHC.Prim.RealWorld, a #))
+  	-- Defined in ‘ghc-prim:GHC.Types’
+instance Monad IO -- Defined in ‘GHC.Base’
+instance Functor IO -- Defined in ‘GHC.Base’
+```
+
+You can drill down further in that buffer again with `C-c C-i` e.g. on
+`Monad`:
+
+``` haskell
+-- Hit `q' to close this window.
+
+class Monad (m :: * -> *) where
+  (>>=) :: m a -> (a -> m b) -> m b
+  (>>) :: m a -> m b -> m b
+  return :: a -> m a
+  fail :: String -> m a
+  	-- Defined in ‘GHC.Base’
+instance Monad (Either e) -- Defined in ‘Data.Either’
+instance Monad Maybe -- Defined in ‘Data.Maybe’
+instance Monad [] -- Defined in ‘GHC.Base’
+instance Monad IO -- Defined in ‘GHC.Base’
+instance Monad ((->) r) -- Defined in ‘GHC.Base’
+```
+
+And again `C-c C-i` on `Maybe`:
+
+``` haskell
+-- Hit `q' to close this window.
+
+data Maybe a = Nothing | Just a 	-- Defined in ‘Data.Maybe’
+instance Eq a => Eq (Maybe a) -- Defined in ‘Data.Maybe’
+instance Monad Maybe -- Defined in ‘Data.Maybe’
+instance Functor Maybe -- Defined in ‘Data.Maybe’
+instance Ord a => Ord (Maybe a) -- Defined in ‘Data.Maybe’
+instance Read a => Read (Maybe a) -- Defined in ‘GHC.Read’
+instance Show a => Show (Maybe a) -- Defined in ‘GHC.Show’
+```
+
+Once you're done, you can hit `q` on each of the windows to get rid of
+them.
