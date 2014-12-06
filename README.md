@@ -124,8 +124,8 @@ The basic gist is that your source is parsed whenever you are idle for
 half a second and then you have a "current node". That node is
 indicated by the background color. You can expand it with `M-a` or `)`
 depending on the direction you want to go. Normal Emacs commands are a
-bit smarter than usually, specifically `C-k`, `C-w`, `C-y`,
-`C-j`.
+bit smarter than usually, specifically `C-k`, `C-w`, `C-y`, `C-j`
+which all pay attention to the AST and often your current selection.
 
 Don't use `TAB` for indentation, use the structured selection and use
 `C-j` which will make a newline and indent to the right location.
