@@ -9,7 +9,7 @@ Dependencies are included or explicitly stated.
 It's easier if you're running Linux or OS X. If you're on Windows,
 there is no guarantee whether anything described will work.
 
-You need GHC version GHC 7.8.3—7.8.3. Check that with:
+You need GHC version GHC 7.8.2—7.8.3. Check that with:
 
     $ ghc --version
     The Glorious Glasgow Haskell Compilation System, version 7.8.2
