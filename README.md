@@ -1,6 +1,21 @@
 # emacs-haskell-config
 
-A quick and easy pre-configured Emacs for developing with Haskell
+A quick and easy pre-configured Emacs for developing with Haskell. You
+can use this to try out the Emacs support for Haskell, or use it as a
+base or to crib Elisp from, or whatever. The motivating use-case is
+that newbies tend to want something that just works that they can
+customize later. This aims to be that repo.
+
+At least, an opinionated version of it. Most of it is using my
+tooling, so it's very me-ish. I pretty much copied my own Emacs
+configuration into a repo.
+
+I will update this repo when I add new haskell-mode features or fix
+bugs. You should be able to reliably pull from it to get updates.
+
+I didn't cover everything that haskell-mode can do in this README, but
+I wrote enough for general use. For example, I'll probably be adding
+flycheck support that uses the GHCi process next weekend.
 
 Dependencies are included or explicitly stated.
 
