@@ -19,3 +19,6 @@
 [submodule "packages/git-modes"]
 	path = packages/git-modes
 	url = https://github.com/magit/git-modes.git
+[submodule "packages/haskell-docs"]
+	path = packages/haskell-docs
+	url = https://github.com/chrisdone/haskell-docs.git

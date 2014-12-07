@@ -45,6 +45,10 @@ Install hindent:
 
     $ cabal install packages/hindent/
 
+Install haskell-docs:
+
+    $ cabal install packages/haskell-docs/
+
 ## Build
 
 Build the haskell-mode Elisp:
@@ -317,4 +321,80 @@ instance Show a => Show (Maybe a) -- Defined in ‘GHC.Show’
 ```
 
 Once you're done, you can hit `q` on each of the windows to get rid of
-them.
+them. There will be a log of the output in your REPL, which you can
+refer to later.
+
+## Import completion
+
+If you type `import` and hit `SPC` you will get a module
+completion. Type `d.b.l` and hit `RET` and you should get
+`Data.ByteString.Lazy`. Do another import of `c.m.re` and you should
+have:
+
+``` haskell
+import Control.Monad.Reader
+import Data.ByteString.Lazy
+```
+
+The new imports will be auto-sorted. If you want to qualify the second
+line, go to it and run `C-c C-q`. Once you're done you can run `C-c
+C-.` to sort and indent the imports.
+
+Hit `F5` to check that your imports were good. You should see an error
+in the bottom like this:
+
+    src/Main.hs:5:18-37: Could not find module ‘Control.Monad.Reader’ …
+        It is a member of the hidden package ‘mtl-2.1.3.1’.
+        Perhaps you need to add ‘mtl’ to the build-depends in your .cabal file.
+        It is a member of the hidden package ‘monads-tf-0.1.0.2’.
+        Perhaps you need to add ‘monads-tf’ to the build-depends in your .cabal file.
+        Use -v to see a list of the files searched for.
+
+And a prompt like this:
+
+> Add `mtl` to haskell-sandbox.cabal? (y or n)
+
+See the next section.
+
+## Dependency adding
+
+With this prompt,
+
+> Add `mtl` to haskell-sandbox.cabal? (y or n)
+
+hit `y`. It will give you the opportunity to adjust the version constraints. Just
+hit `RET`. It will prompt whether to add it to the executable
+section. Hit `y`. Finally, it asks whether to save the file, hit `y`.
+
+You'll now be prompted with the same process for `bytestring`. If you
+don't want to do it, hit `C-g` at any point. But in this case we want
+to do it. Repeat the same process for bytestring.
+
+Now go back to `Main.hs` and run `F5`, it will say "Cabal file
+changed; restart GHCi process? (y or n)" Hit `y`.
+
+It will restart the process and compile `Main.hs`. See the next
+section for the next prompt.
+
+## Redundant imports
+
+If you followed the previous step, you should have a redundant import
+for `Control.Monad.Reader`. It will prompt whether to remove it. Let's
+remove it for now, but we'll automatically add it back later. Hit `y`
+on all the redundant import prompts.
+
+## Automatically adding imports
+
+Add the following function to `Main.hs`:
+
+``` haskell
+test = runReader (return ()) ()
+```
+
+And hit `F5`. It should say:
+
+> Identifier `runReader` not in scope, choose module to import? (y or
+> n)
+
+Hit `y` and choose `Control.Monad.Reader`. Now you can run `F5` and it
+should be a successful compile.
