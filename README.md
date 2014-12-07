@@ -167,7 +167,7 @@ In the REPL window you'll see the full error:
         In the expression: fib (n - 1) + fib
     Compilation failed.
 
-You can run <code>C-x `</code> to jump to the error
+You can run <code>C-x \`</code> to jump to the error
 line/column. Correct the error and hit `F5` and you should get `OK`
 again.
 
