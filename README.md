@@ -84,7 +84,7 @@ Install haskell-docs:
 Build the haskell-mode Elisp:
 
     $ cd packages/haskell-mode/
-    $ make
+    $ make compile haskell-mode-autoloads.el
 
 Build the structured-haskell-mode Elisp:
 
