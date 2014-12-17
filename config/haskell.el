@@ -1,6 +1,7 @@
 
 ;; Requirements
 
+(require 'haskell)
 (require 'haskell-mode)
 (require 'hindent)
 (require 'haskell-process)
