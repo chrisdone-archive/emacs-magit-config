@@ -93,6 +93,13 @@ Build the structured-haskell-mode Elisp:
 
 ## Running
 
+Put the following in your `~/.ghci` file.
+
+    :set +c
+
+This will make ghci-ng collect information about your project after
+loading modules.
+
 In the repo directory, run this:
 
     $ emacs -Q -l init.el
