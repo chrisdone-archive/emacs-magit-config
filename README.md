@@ -93,7 +93,8 @@ Build the structured-haskell-mode Elisp:
 
 ## Running
 
-Put the following in your `~/.ghci` file.
+**Put the following in your `~/.ghci` file.** This is important, don't
+  forget it.
 
     :set +c
 
