@@ -436,3 +436,9 @@ And hit `F5`. It should say:
 
 Hit `y` and choose `Control.Monad.Reader`. Now you can run `F5` and it
 should be a successful compile.
+
+## Fly check support
+
+There is very new, experimental flycheck support here:
+https://github.com/chrisdone/haskell-flycheck When I've finished pilot
+testing it, I'll document it better.
