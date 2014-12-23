@@ -39,7 +39,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 It's easier if you're running Linux or OS X. If you're on Windows,
 there is no guarantee whether anything described will work.
 
-You need GHC version GHC 7.8.2—7.8.3. Check that with:
+You need GHC version 7.8.2, 7.8.3, or 7.8.4. Check that with:
 
     $ ghc --version
     The Glorious Glasgow Haskell Compilation System, version 7.8.2
