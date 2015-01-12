@@ -67,7 +67,7 @@ Install structured-haskell-mode:
 
     $ cabal install packages/structured-haskell-mode/
 
-Install ghci-ng:
+Install ghci-ng (on Ubuntu you may need to install `libtinfo-dev`):
 
     $ cabal install packages/ghci-ng/
 
@@ -78,6 +78,7 @@ Install hindent:
 Install haskell-docs:
 
     $ cabal install packages/haskell-docs/
+
 
 ## Build
 
