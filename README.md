@@ -84,6 +84,8 @@ in Emacs.
 * `F` - pull from the remote
 * `F - r F` - pull --rebase
 * `P` - push
+* `R`  - rebase
+* `m` - merge
 
 Regular Emacs commands (especially window management):
 
