@@ -48,10 +48,7 @@ you can put the following in your `~/.emacs` file:
 
 Then run Emacs from the terminal as simply:
 
-    $ emacs & disown
-
-You need to run it from the terminal to ensure that your `PATH` is
-configured, otherwise it's more difficult to setup.
+    $ emacs
 
 ## Using
 
