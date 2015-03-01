@@ -7,22 +7,18 @@
 ;; Packages and configs to load
 
 (defvar packages
-  '(haskell-mode
-    smex
+  '(smex
     magit)
   "Packages whose location follows the
   packages/package-name/package-name.el format.")
 
 (defvar custom-load-paths
-  '("structured-haskell-mode/elisp"
-    "hindent/elisp"
-    "git-modes")
+  '("git-modes")
   "Custom load paths that don't follow the normal
   package-name/module-name.el format.")
 
 (defvar configs
-  '("global"
-    "haskell")
+  '("global")
   "Configuration files that follow the config/foo.el file path
   format.")
 
@@ -62,5 +58,4 @@
 ;; Mode initializations
 
 (smex-initialize)
-(turn-on-haskell-simple-indent)
-(load "haskell-mode-autoloads.el")
+(magit-status)
