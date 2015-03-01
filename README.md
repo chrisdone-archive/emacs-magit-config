@@ -58,3 +58,8 @@ Run `emacs` in the given directory:
 
 And it will automatically run the equivalent of typing `M-x
 magit-status RET` in Emacs.
+
+magit commands themselves can be accessed via `?` that lists the
+regular commands, hitting a further key of those listed (e.g. `c`)
+shows more help for that command. Ctrl-g cancels any popup of any kind
+in Emacs.
