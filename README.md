@@ -64,7 +64,7 @@ regular commands, hitting a further key of those listed (e.g. `c`)
 shows more help for that command. Ctrl-g cancels any popup of any kind
 in Emacs.
 
-Most handy keybindings:
+## Common keybindings
 
 * `g` - refresh the buffer
 * `n`/`p` - move to next/prev hunk/section
