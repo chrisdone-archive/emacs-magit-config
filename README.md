@@ -63,3 +63,23 @@ magit commands themselves can be accessed via `?` that lists the
 regular commands, hitting a further key of those listed (e.g. `c`)
 shows more help for that command. Ctrl-g cancels any popup of any kind
 in Emacs.
+
+Most handy keybindings:
+
+* `g` - refresh the buffer
+* `n`/`p` - move to next/prev hunk/section
+* `TAB` - expand a changeset
+* `s` - stage a hunk. You can select parts of a hunk to stage just
+  that part.
+* `u` - unstage the thing the cursor is on. Again, you can select what
+  to unstage if necessary.
+* `-` / `+` - increase/decrease hunk granularity.
+* `k` - kill/delete a hunk.
+* `c` - commit
+* `C-c C-c` - inside
+* `b` - checkout a branch or a specific commit
+* `s` - stash the current working changeset
+* `F` - pull from the remote
+* `F - r F` - pull --rebase
+* `P` - push
+* `Ctrl-g` - cancel whatever prompt is prompting you
