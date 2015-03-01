@@ -53,4 +53,4 @@
 ;; Mode initializations
 
 (smex-initialize)
-(magit-status)
+(call-interactively 'magit-status)
