@@ -85,7 +85,11 @@ in Emacs.
 * `F - r F` - pull --rebase
 * `P` - push
 
-Regular Emacs commands:
+Regular Emacs commands (especially window management):
 
 * `Ctrl-x k` - kill the current buffer
 * `Ctrl-g` - cancel whatever prompt is prompting you
+* `Ctrl-x 1` - just show one window
+* `Ctrl-x 0` - close the current window
+* `Ctrl-x 2` - split window in twine, one above the other
+* `Ctrl-x 3` - split window in twine, side-by-side
