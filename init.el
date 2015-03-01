@@ -41,11 +41,6 @@
                                           (symbol-name name)))
                      (require name))))
 
-(require 'shm)
-(require 'hindent)
-(require 'shm-case-split)
-(require 'shm-reformat)
-
 
 ;; Emacs configurations
 
