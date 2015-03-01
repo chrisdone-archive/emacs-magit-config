@@ -53,4 +53,6 @@
 ;; Mode initializations
 
 (smex-initialize)
+(kill-buffer "*scratch*")
+(setq magit-status-buffer-switch-function 'switch-to-buffer)
 (call-interactively 'magit-status)
