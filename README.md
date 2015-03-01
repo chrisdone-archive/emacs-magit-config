@@ -67,6 +67,8 @@ in Emacs.
 ## Common keybindings
 
 * `g` - refresh the buffer
+* `l` - log (`n`/`p` inside the log also does the expected thing)
+* `q` - close a buffer (e.g. the log)
 * `n`/`p` - move to next/prev hunk/section
 * `TAB` - expand a changeset
 * `s` - stage a hunk. You can select parts of a hunk to stage just
@@ -82,4 +84,8 @@ in Emacs.
 * `F` - pull from the remote
 * `F - r F` - pull --rebase
 * `P` - push
+
+Regular Emacs commands:
+
+* `Ctrl-x k` - kill the current buffer
 * `Ctrl-g` - cancel whatever prompt is prompting you
